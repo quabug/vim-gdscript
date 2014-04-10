@@ -14,17 +14,33 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 "
-syn keyword gdscriptStatement	false, null, true
+syn keyword gdscriptStatement	false null true
 syn keyword gdscriptStatement	assert break continue tool
-syn keyword gdscriptStatement	pass print return
+syn keyword gdscriptStatement	pass self return
 syn keyword gdscriptStatement	class func nextgroup=gdscriptFunction skipwhite
 syn keyword gdscriptConditional	elif else if
 syn keyword gdscriptRepeat	for while
 syn keyword gdscriptOperator	and in not or extends
 syn match gdscriptInclude	"^extends"
 syn keyword gdscriptStorage	export
-syn keyword gdscriptType	var const int float bool String
+syn keyword gdscriptType	var const int real bool String
 syn keyword gdscriptStructure	enum
+
+syn keyword gdscriptType        Vector2 Size2 Rect2 Vector3 Matrix32 Plane
+syn keyword gdscriptType        Quat AABB Box3 Matrix3 Transform
+syn keyword gdscriptType        Color Image NodePath RID Object InputEvent
+syn keyword gdscriptType        RawArray IntArray FloatArray StringArray
+syn keyword gdscriptType        Vector2Array Vector3Array ColorArray
+syn keyword gdscriptType        Nil Dictionary Array
+
+syn keyword gdscriptBuiltin     sin cos tan sinh cosh tanh asin acos atan atan2
+syn keyword gdscriptBuiltin     sqrt fmod fposmod floor ceil round abs sign pow
+syn keyword gdscriptBuiltin     log exp isnan isinf ease decimals stepify lerp
+syn keyword gdscriptBuiltin     dectime randomize randi randf rand_range rand_seed
+syn keyword gdscriptBuiltin     deg2rad rad2deg linear2db db2linear max min clamp
+syn keyword gdscriptBuiltin     nearest_po2 weakref funcref convert str print
+syn keyword gdscriptBuiltin     printt printerr printraw range load inst2dict
+syn keyword gdscriptBuiltin     dict2inst preload print_stack
 
 syn match   gdscriptDecorator	"@" display nextgroup=gdscriptFunction skipwhite
 " The zero-length non-grouping match before the function name is
