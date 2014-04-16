@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:	GDScript
 " Maintainer:	quabug <quabug@gmail.com>
-" Last Change:	2014 Feb 26
+" Last Change:	2014 April 16
 
 if version < 600
   syntax clear
@@ -102,91 +102,12 @@ syn match   gdscriptEscape	"\\$"
 	\ "\%(^\|\W\)\@<=\d*\.\d\+\%([eE][+-]\=\d\+\)\=[jJ]\=\>"
 "endif
 
-" Group the built-ins in the order in the 'gdscript Library Reference' for
-" easier comparison.
-" http://docs.gdscript.org/library/constants.html
-" http://docs.gdscript.org/library/functions.html
-" http://docs.gdscript.org/library/functions.html#non-essential-built-in-functions
-" gdscript built-in functions are in alphabetical order.
-"if !exists("gdscript_no_builtin_highlight")
-  "" built-in constants
-  "" 'False', 'True', and 'None' are also reserved words in gdscript 3.0
-  "syn keyword gdscriptBuiltin	False True None
-  "syn keyword gdscriptBuiltin	NotImplemented Ellipsis __debug__
-  "" built-in functions
-  "syn keyword gdscriptBuiltin	abs all any bin bool chr classmethod
-  "syn keyword gdscriptBuiltin	compile complex delattr dict dir divmod
-  "syn keyword gdscriptBuiltin	enumerate eval filter float format
-  "syn keyword gdscriptBuiltin	frozenset getattr globals hasattr hash
-  "syn keyword gdscriptBuiltin	help hex id input int isinstance
-  "syn keyword gdscriptBuiltin	issubclass iter len list locals map max
-  "syn keyword gdscriptBuiltin	min next object oct open ord pow print
-  "syn keyword gdscriptBuiltin	property range repr reversed round set
-  "syn keyword gdscriptBuiltin	setattr slice sorted staticmethod str
-  "syn keyword gdscriptBuiltin	sum super tuple type vars zip __import__
-  "" gdscript 2.6 only
-  "syn keyword gdscriptBuiltin	basestring callable cmp execfile file
-  "syn keyword gdscriptBuiltin	long raw_input reduce reload unichr
-  "syn keyword gdscriptBuiltin	unicode xrange
-  "" gdscript 3.0 only
-  "syn keyword gdscriptBuiltin	ascii bytearray bytes exec memoryview
-  "" non-essential built-in functions; gdscript 2.6 only
-  "syn keyword gdscriptBuiltin	apply buffer coerce intern
-"endif
-
-" From the 'gdscript Library Reference' class hierarchy at the bottom.
-" http://docs.gdscript.org/library/exceptions.html
-"if !exists("gdscript_no_exception_highlight")
-  "" builtin base exceptions (only used as base classes for other exceptions)
-  "syn keyword gdscriptExceptions	BaseException Exception
-  "syn keyword gdscriptExceptions	ArithmeticError EnvironmentError
-  "syn keyword gdscriptExceptions	LookupError
-  "" builtin base exception removed in gdscript 3.0
-  "syn keyword gdscriptExceptions	StandardError
-  "" builtin exceptions (actually raised)
-  "syn keyword gdscriptExceptions	AssertionError AttributeError BufferError
-  "syn keyword gdscriptExceptions	EOFError FloatingPointError GeneratorExit
-  "syn keyword gdscriptExceptions	IOError ImportError IndentationError
-  "syn keyword gdscriptExceptions	IndexError KeyError KeyboardInterrupt
-  "syn keyword gdscriptExceptions	MemoryError NameError NotImplementedError
-  "syn keyword gdscriptExceptions	OSError OverflowError ReferenceError
-  "syn keyword gdscriptExceptions	RuntimeError StopIteration SyntaxError
-  "syn keyword gdscriptExceptions	SystemError SystemExit TabError TypeError
-  "syn keyword gdscriptExceptions	UnboundLocalError UnicodeError
-  "syn keyword gdscriptExceptions	UnicodeDecodeError UnicodeEncodeError
-  "syn keyword gdscriptExceptions	UnicodeTranslateError ValueError VMSError
-  "syn keyword gdscriptExceptions	WindowsError ZeroDivisionError
-  "" builtin warnings
-  "syn keyword gdscriptExceptions	BytesWarning DeprecationWarning FutureWarning
-  "syn keyword gdscriptExceptions	ImportWarning PendingDeprecationWarning
-  "syn keyword gdscriptExceptions	RuntimeWarning SyntaxWarning UnicodeWarning
-  "syn keyword gdscriptExceptions	UserWarning Warning
-"endif
-
 "if exists("gdscript_space_error_highlight")
   " trailing whitespace
   syn match   gdscriptSpaceError	display excludenl "\s\+$"
   " mixed tabs and spaces
   syn match   gdscriptSpaceError	display " \+\t"
   syn match   gdscriptSpaceError	display "\t\+ "
-"endif
-
-" Do not spell doctests inside strings.
-" Notice that the end of a string, either ''', or """, will end the contained
-" doctest too.  Thus, we do *not* need to have it as an end pattern.
-"if !exists("gdscript_no_doctest_highlight")
-  "if !exists("gdscript_no_doctest_code_highlight")
-    "syn region gdscriptDoctest
-	  "\ start="^\s*>>>\s" end="^\s*$"
-	  "\ contained contains=ALLBUT,gdscriptDoctest,@Spell
-    "syn region gdscriptDoctestValue
-	  "\ start=+^\s*\%(>>>\s\|\.\.\.\s\|"""\|'''\)\@!\S\++ end="$"
-	  "\ contained
-  "else
-    "syn region gdscriptDoctest
-	  "\ start="^\s*>>>" end="^\s*$"
-	  "\ contained contains=@NoSpell
-  "endif
 "endif
 
 " Sync at the beginning of class, function, or method definition.
@@ -223,15 +144,8 @@ if version >= 508 || !exists("did_gdscript_syn_inits")
   "if !exists("gdscript_no_builtin_highlight")
     HiLink gdscriptBuiltin	Function
   "endif
-  "if !exists("gdscript_no_exception_highlight")
-    "HiLink gdscriptExceptions	Structure
-  "endif
   "if exists("gdscript_space_error_highlight")
     HiLink gdscriptSpaceError	Error
-  "endif
-  "if !exists("gdscript_no_doctest_highlight")
-    "HiLink gdscriptDoctest	Special
-    "HiLink gdscriptDoctestValue	Define
   "endif
 
   delcommand HiLink
