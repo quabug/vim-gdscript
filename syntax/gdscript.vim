@@ -55,6 +55,8 @@ syn match   gdscriptFunction
 syn match   gdscriptComment	"#.*$" contains=gdscriptTodo,@Spell
 syn keyword gdscriptTodo		FIXME NOTE NOTES TODO XXX HACK contained
 
+setlocal commentstring=#%s
+
 " Triple-quoted strings can contain doctests.
 syn region  gdscriptString
       \ start=+[uU]\=\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1"
