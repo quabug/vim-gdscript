@@ -13,6 +13,7 @@ let b:did_indent = 1
 " Some preliminary settings
 setlocal nolisp		" Make sure lisp indenting doesn't supersede us
 setlocal autoindent	" indentexpr isn't much help otherwise
+setlocal noexpandtab " tab must not be converted in spaces, otherwise an error would occur in Godot
 
 setlocal indentexpr=GetPythonIndent(v:lnum)
 setlocal indentkeys+=<:>,=elif,=except
