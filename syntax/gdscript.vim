@@ -2,7 +2,8 @@
 " Language:	GDScript
 " Maintainer:	quabug <quabug@gmail.com>
 " Contributor:  Hilton Medeiros <https://github.com/hiltonm>
-" Last Change:	2014 April 16
+"
+" Last Change:	2016 January 29
 
 if version < 600
   syntax clear
