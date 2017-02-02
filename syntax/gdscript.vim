@@ -2,7 +2,8 @@
 " Language:	GDScript
 " Maintainer:	quabug <quabug@gmail.com>
 " Contributor:  Hilton Medeiros <https://github.com/hiltonm>
-" Last Change:	2014 April 16
+"
+" Last Change:	2016 January 29
 
 if version < 600
   syntax clear
@@ -18,6 +19,7 @@ set cpo&vim
 syn keyword gdscriptStatement	false null true
 syn keyword gdscriptStatement	assert break continue tool breakpoint
 syn keyword gdscriptStatement	pass self return
+syn keyword gdscriptStatement	remote sync master slave nextgroup=gdscriptStatement skipwhite
 syn keyword gdscriptStatement	class func nextgroup=gdscriptFunction skipwhite
 syn keyword gdscriptConditional	elif else if
 syn keyword gdscriptRepeat	for while
@@ -49,8 +51,7 @@ syn match   gdscriptDecorator	"@" display nextgroup=gdscriptFunction skipwhite
 " interpreted as a function inside the contained environment of
 " doctests.
 " A dot must be allowed because of @MyClass.myfunc decorators.
-syn match   gdscriptFunction
-      \ "\%(\%(func\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained
+syn match   gdscriptFunction /\k\+\%(\s*(\)\@=/ 
 
 syn match   gdscriptComment	"#.*$" contains=gdscriptTodo,@Spell
 syn keyword gdscriptTodo		FIXME NOTE NOTES TODO XXX HACK contained
@@ -114,7 +115,7 @@ syn match   gdscriptEscape	"\\$"
 "endif
 
 " Sync at the beginning of class, function, or method definition.
-syn sync match gdscriptSync grouphere NONE "^\s*\%(func\|class\)\s\+\h\w*\s*("
+syn sync match gdscriptSync grouphere NONE "^\s*\%(master\|slave\|sync\|remote\|func\|class\)\s\+\h\w*\s*("
 
 if version >= 508 || !exists("did_gdscript_syn_inits")
   if version <= 508
