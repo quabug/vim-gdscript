@@ -2,7 +2,7 @@
 " Language:	GDScript
 " Maintainer:	quabug <quabug@gmail.com>
 " Contributor:  Hilton Medeiros <https://github.com/hiltonm>
-"
+" Contributor:  Ludvig Böklin <https://github.com/lboklin>
 " Last Change:	2016 January 29
 
 if version < 600
